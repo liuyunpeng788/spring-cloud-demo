@@ -1,0 +1,26 @@
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+    leaseRenewalIntervalInSeconds: 10
+#    statusPageUrlPath: /info
+#    healthCheckUrlPath: /health
+
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
+    renewal-threshold-update-interval-ms: 2000
+    expected-client-renewal-interval-seconds: 2
+
+  client:
+#    通过eureka.client.registerWithEureka：false和fetchRegistry：false来表明自己是一个eureka server.
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+spring:
+  application:
+    name: eureka-server
